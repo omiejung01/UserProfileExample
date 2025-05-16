@@ -1,2 +1,2 @@
 # UserProfileExample
-My version of JohannesMilke / user_profile_example.
+My version of JohannesMilke / user_profile_example. You can find Milke's tutorial here https://www.youtube.com/watch?v=WFJt5dCJsTo.
