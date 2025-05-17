@@ -13,6 +13,7 @@ class User {
     required this.isDarkMode,
   });
 
+
   User copy({
     String? imagePath,
     String? name,

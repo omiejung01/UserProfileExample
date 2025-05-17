@@ -2,31 +2,45 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:user_profile_example/model/user.dart';
 import 'package:user_profile_example/page/edit_profile_page.dart';
-import 'package:user_profile_example/utils/user_preferences.dart';
+//import 'package:user_profile_example/utils/user_preferences.dart';
 import 'package:user_profile_example/widget/appbar_widget.dart';
 import 'package:user_profile_example/widget/button_widget.dart';
 import 'package:user_profile_example/widget/numbers_widget.dart';
 import 'package:user_profile_example/widget/profile_widget.dart';
 
+
+
 class ProfilePage extends StatefulWidget {
+
+
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
+
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    final user = UserPreferences.getUser();
+    print('#Text 01');
+    final user = User(
+      imagePath: 'https://media04.tetraserver.com/uploads/profile_pics/1731420686_candace.png',
+      name: 'Candace',
+      email: 'sarah.abs@gmail.com',
+      about:
+      'Certified Personal Trainer and Nutritionist with years of experience in creating effective diets and training plans focused on achieving individual customers goals in a smooth way.',
+      isDarkMode: false,
+    );
 
+    print('#Text 02');
     return ThemeSwitchingArea(
       child: Builder(
         builder: (context) => Scaffold(
           appBar: buildAppBar(context),
           body: ListView(
             physics: BouncingScrollPhysics(),
-            children: [
+            children: /*[
               ProfileWidget(
-                imagePath: user.imagePath,
+                imagePath: 'https://media04.tetraserver.com/uploads/profile_pics/1731420686_candace.png',
                 onClicked: () async {
                   await Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => EditProfilePage()),
@@ -42,7 +56,8 @@ class _ProfilePageState extends State<ProfilePage> {
               NumbersWidget(),
               const SizedBox(height: 48),
               buildAbout(user),
-            ],
+            ],*/
+            [Text('Hello')]
           ),
         ),
       ),

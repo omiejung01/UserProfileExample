@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:user_profile_example/page/profile_page.dart';
+import 'package:user_profile_example/page/profile_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         dividerColor: Colors.black,
       ),
       title: title,
-      home: ProfilePage(),
+      home: ProfileScreen(),
       //home: MaterialApp(),
     );
   }
