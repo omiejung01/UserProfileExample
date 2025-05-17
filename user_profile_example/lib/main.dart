@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:user_profile_example/page/profile_page.dart';
 import 'package:user_profile_example/page/profile_screen.dart';
 
 Future main() async {
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.blue.shade300,
+        primaryColor: Colors.orange,
         dividerColor: Colors.black,
       ),
       title: title,
