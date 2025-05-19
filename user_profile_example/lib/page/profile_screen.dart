@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:user_profile_example/page/account_screen.dart';
+import 'package:user_profile_example/widget/profile_menu.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -24,24 +26,21 @@ class ProfileScreen extends StatelessWidget {
                 color: Colors.orange,
                 size: 30.0,
               ),
-              press: () => {},
+              press:
+                  () => {
+                    Navigator.of(context).push(
+                      _createRouteAccount()
+                    ),
+                  },
             ),
             ProfileMenu(
               text: "Help Center",
-              icon: Icon(
-                Icons.help,
-                color: Colors.orange,
-                size: 30.0,
-              ),
+              icon: Icon(Icons.help, color: Colors.orange, size: 30.0),
               press: () {},
             ),
             ProfileMenu(
               text: "Log Out",
-              icon: Icon(
-                Icons.logout,
-                color: Colors.orange,
-                size: 30.0,
-              ),
+              icon: Icon(Icons.logout, color: Colors.orange, size: 30.0),
               press: () {},
             ),
           ],
@@ -51,10 +50,25 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
+
+Route _createRouteAccount() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const AccountScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
+
+
 class ProfilePic extends StatelessWidget {
-  const ProfilePic({
-    Key? key,
-  }) : super(key: key);
+  const ProfilePic({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +80,9 @@ class ProfilePic extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           const CircleAvatar(
-            backgroundImage:
-            NetworkImage("https://media04.tetraserver.com/uploads/profile_pics/1731420686_candace.png"),
+            backgroundImage: NetworkImage(
+              "https://media04.tetraserver.com/uploads/profile_pics/1731420686_candace.png",
+            ),
           ),
           Positioned(
             right: -16,
@@ -92,61 +107,11 @@ class ProfilePic extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
 
-class ProfileMenu extends StatelessWidget {
-  const ProfileMenu({
-    Key? key,
-    required this.text,
-    required this.icon,
-    this.press,
-  }) : super(key: key);
 
-  final String text;
-  final Icon icon;
-  final VoidCallback? press;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: TextButton(
-        style: TextButton.styleFrom(
-          foregroundColor: const Color(0xFFFF7643),
-          padding: const EdgeInsets.all(20),
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(15),
-              side: BorderSide(
-                color: Colors.orange,
-                width: 2.0,
-              )),
-          backgroundColor: const Color(0xFFF5F6F9),
-        ),
-        onPressed: press,
-        child: Row(
-          children: [
-            icon,
-            const SizedBox(width: 20),
-            Expanded(
-              child: Text(
-                text,
-                style: const TextStyle(
-                  color: Color(0xFF757575),
-                ),
-              ),
-            ),
-            const Icon(
-              Icons.arrow_forward_ios,
-              color: Color(0xFF757575),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
